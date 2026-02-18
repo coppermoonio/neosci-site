@@ -1,0 +1,905 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeoSci Clinical Research | Bring Clinical Studies to Your Practice</title>
+    <meta name="description" content="NeoSci Clinical Research partners with physicians to bring profitable clinical studies to your practice. 40+ years of experience in Pharma study acquisition, staff training, and patient recruitment.">
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+/* === VARIABLES === */
+:root {
+    --navy: #0B1D3A;
+    --navy-light: #132B50;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --red: #DC2626;
+    --red-soft: #EF4444;
+    --white: #FFFFFF;
+    --off-white: #F8FAFC;
+    --gray-50: #F1F5F9;
+    --gray-100: #E2E8F0;
+    --gray-200: #CBD5E1;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1E293B;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+    font-family: var(--font-body);
+    color: var(--gray-800);
+    line-height: 1.7;
+    background: var(--white);
+    -webkit-font-smoothing: antialiased;
+}
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+
+/* === LAYOUT === */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+/* === NAV === */
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background: rgba(255,255,255,0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: var(--transition);
+    border-bottom: 1px solid transparent;
+}
+.nav.scrolled {
+    border-bottom-color: var(--gray-100);
+    box-shadow: 0 1px 12px rgba(0,0,0,0.06);
+}
+.nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 72px;
+}
+.nav-logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.nav-logo-img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+}
+.nav-logo-text {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+}
+.logo-neo {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--blue);
+    display: inline;
+}
+.logo-sci {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: 1.35rem;
+    color: var(--red);
+    display: inline;
+}
+.logo-sub {
+    font-size: 0.55rem;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    color: var(--blue);
+    text-transform: uppercase;
+}
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+.nav-links a {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--gray-700);
+    transition: var(--transition);
+    position: relative;
+}
+.nav-links a:hover { color: var(--blue); }
+.nav-cta {
+    background: var(--blue);
+    color: var(--white) !important;
+    padding: 10px 22px;
+    border-radius: 8px;
+    font-weight: 600 !important;
+}
+.nav-cta:hover { background: var(--navy) !important; }
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 28px;
+    height: 20px;
+    position: relative;
+}
+.nav-toggle span {
+    display: block;
+    width: 100%;
+    height: 2px;
+    background: var(--gray-800);
+    position: absolute;
+    left: 0;
+    transition: var(--transition);
+}
+.nav-toggle span:nth-child(1) { top: 0; }
+.nav-toggle span:nth-child(2) { top: 9px; }
+.nav-toggle span:nth-child(3) { top: 18px; }
+.nav-toggle.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+/* === HERO === */
+.hero {
+    padding: 140px 24px 80px;
+    position: relative;
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--off-white) 0%, #EEF2FF 100%);
+}
+.hero-bg {
+    position: absolute;
+    top: -200px;
+    right: -200px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%);
+    border-radius: 50%;
+}
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+}
+.hero-label {
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 16px;
+}
+.hero h1 {
+    font-family: var(--font-display);
+    font-size: 2.8rem;
+    font-weight: 600;
+    line-height: 1.2;
+    color: var(--navy);
+    margin-bottom: 20px;
+}
+.hero-sub {
+    font-size: 1.1rem;
+    color: var(--gray-600);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    max-width: 520px;
+}
+.hero-actions {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+.btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition);
+    cursor: pointer;
+}
+.btn-primary {
+    background: var(--blue);
+    color: var(--white);
+    box-shadow: 0 4px 14px rgba(37,99,235,0.3);
+}
+.btn-primary:hover {
+    background: var(--navy);
+    box-shadow: 0 4px 20px rgba(11,29,58,0.3);
+    transform: translateY(-1px);
+}
+.btn-outline {
+    border: 2px solid var(--gray-200);
+    color: var(--gray-700);
+    background: transparent;
+}
+.btn-outline:hover {
+    border-color: var(--blue);
+    color: var(--blue);
+}
+.hero-image {
+    position: relative;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0,0,0,0.12);
+}
+.hero-image img {
+    width: 100%;
+    height: 420px;
+    object-fit: cover;
+}
+
+/* === SECTION HEADERS === */
+.section-header {
+    text-align: center;
+    max-width: 640px;
+    margin: 0 auto 56px;
+}
+.section-label {
+    font-size: 0.78rem;
+    font-weight: 700;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--blue);
+    margin-bottom: 12px;
+}
+.section-header h2, .feature-text h2, .about-text h2, .contact-text h2 {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 600;
+    color: var(--navy);
+    line-height: 1.25;
+    margin-bottom: 16px;
+}
+.section-desc {
+    font-size: 1.05rem;
+    color: var(--gray-600);
+}
+
+/* === PARTNERSHIP / PILLARS === */
+.partnership {
+    padding: 100px 0;
+    background: var(--white);
+}
+.pillars {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+.pillar {
+    background: var(--off-white);
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    padding: 36px 32px;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(24px);
+}
+.pillar.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.pillar:hover {
+    border-color: var(--blue);
+    box-shadow: 0 8px 32px rgba(37,99,235,0.08);
+    transform: translateY(-4px);
+}
+.pillar-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+    background: linear-gradient(135deg, var(--blue), var(--navy-light));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    margin-bottom: 20px;
+}
+.pillar h3 {
+    font-family: var(--font-display);
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+}
+.pillar p {
+    color: var(--gray-600);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+/* === FEATURE / APP + COORDINATOR === */
+.feature {
+    padding: 80px 0;
+    background: var(--off-white);
+}
+.feature-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    margin-bottom: 80px;
+    opacity: 0;
+    transform: translateY(24px);
+}
+.feature-grid.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.feature-grid:last-child { margin-bottom: 0; }
+.feature-grid.reverse .feature-image { order: 2; }
+.feature-grid.reverse .feature-text { order: 1; }
+.feature-image {
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0,0,0,0.1);
+}
+.feature-image img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+}
+.feature-text p:not(.section-label) {
+    color: var(--gray-600);
+    font-size: 1.02rem;
+    line-height: 1.8;
+}
+
+/* === SERVICES === */
+.services {
+    padding: 100px 0;
+    background: var(--navy);
+}
+.services .section-label { color: var(--blue-light); }
+.services .section-header h2 { color: var(--white); }
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+}
+.service-card {
+    background: var(--navy-light);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 36px 28px;
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(24px);
+}
+.service-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.service-card:hover {
+    border-color: var(--blue);
+    transform: translateY(-4px);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+}
+.service-num {
+    font-family: var(--font-display);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: rgba(255,255,255,0.12);
+    margin-bottom: 16px;
+}
+.service-card h3 {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 12px;
+}
+.service-card p {
+    color: var(--gray-400);
+    font-size: 0.95rem;
+    line-height: 1.75;
+}
+
+/* === ABOUT === */
+.about {
+    padding: 100px 0;
+    background: var(--white);
+}
+.about-inner {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+.about-text p {
+    color: var(--gray-600);
+    font-size: 1.02rem;
+    line-height: 1.8;
+    margin-bottom: 28px;
+}
+.about-areas h4 {
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--gray-700);
+    margin-bottom: 12px;
+}
+.area-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+.area-tags span {
+    padding: 6px 16px;
+    background: var(--off-white);
+    border: 1px solid var(--gray-100);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-700);
+}
+.about-stats {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+.stat {
+    background: var(--off-white);
+    border: 1px solid var(--gray-100);
+    border-radius: 16px;
+    padding: 28px 32px;
+    text-align: center;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: var(--transition);
+}
+.stat.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--blue);
+    line-height: 1;
+    margin-bottom: 6px;
+}
+.stat-label {
+    font-size: 0.85rem;
+    font-weight: 500;
+    color: var(--gray-600);
+}
+
+/* === CONTACT === */
+.contact {
+    padding: 100px 0;
+    background: linear-gradient(135deg, #EEF2FF 0%, var(--off-white) 100%);
+}
+.contact-inner {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: start;
+}
+.contact-text p {
+    color: var(--gray-600);
+    font-size: 1.05rem;
+    line-height: 1.8;
+}
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    background: var(--white);
+    padding: 20px 24px;
+    border-radius: 12px;
+    border: 1px solid var(--gray-100);
+    transition: var(--transition);
+    opacity: 0;
+    transform: translateY(16px);
+}
+.contact-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+.contact-item:hover {
+    border-color: var(--blue);
+    box-shadow: 0 4px 16px rgba(37,99,235,0.08);
+}
+.contact-item svg {
+    color: var(--blue);
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+.contact-item a, .contact-item span {
+    font-size: 0.95rem;
+    color: var(--gray-700);
+    line-height: 1.6;
+}
+.contact-item a:hover { color: var(--blue); }
+
+/* === FOOTER === */
+.footer {
+    background: var(--navy);
+    padding: 40px 0;
+}
+.footer-inner {
+    text-align: center;
+}
+.footer-brand {
+    margin-bottom: 16px;
+}
+.footer-brand .logo-neo { font-size: 1.4rem; }
+.footer-brand .logo-sci { font-size: 1.4rem; }
+.footer-tagline {
+    display: block;
+    font-size: 0.72rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gray-400);
+    margin-top: 2px;
+}
+.footer-links {
+    margin-bottom: 16px;
+}
+.footer-links a {
+    color: var(--gray-400);
+    font-size: 0.85rem;
+    transition: var(--transition);
+}
+.footer-links a:hover { color: var(--white); }
+.footer-sep {
+    color: var(--gray-600);
+    margin: 0 12px;
+    font-size: 0.8rem;
+}
+.footer-copy {
+    font-size: 0.78rem;
+    color: var(--gray-600);
+}
+
+/* === TRANSITIONS === */
+.pillar, .service-card, .feature-grid, .stat, .contact-item {
+    transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.pillar:nth-child(2), .service-card:nth-child(2), .stat:nth-child(2), .contact-item:nth-child(2) { transition-delay: 0.1s; }
+.pillar:nth-child(3), .service-card:nth-child(3), .stat:nth-child(3), .contact-item:nth-child(3) { transition-delay: 0.2s; }
+.pillar:nth-child(4) { transition-delay: 0.3s; }
+
+/* === RESPONSIVE === */
+@media (max-width: 900px) {
+    .hero-content { grid-template-columns: 1fr; gap: 40px; }
+    .hero h1 { font-size: 2.2rem; }
+    .hero-image img { height: 300px; }
+    .pillars { grid-template-columns: 1fr; }
+    .feature-grid { grid-template-columns: 1fr; gap: 32px; }
+    .feature-grid.reverse .feature-image { order: 0; }
+    .feature-grid.reverse .feature-text { order: 0; }
+    .services-grid { grid-template-columns: 1fr; }
+    .about-inner { grid-template-columns: 1fr; }
+    .about-stats { flex-direction: row; flex-wrap: wrap; }
+    .stat { flex: 1; min-width: 140px; }
+    .contact-inner { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .nav-links {
+        display: none;
+        position: absolute;
+        top: 72px;
+        left: 0;
+        right: 0;
+        background: var(--white);
+        flex-direction: column;
+        padding: 24px;
+        gap: 16px;
+        border-bottom: 1px solid var(--gray-100);
+        box-shadow: 0 12px 32px rgba(0,0,0,0.08);
+    }
+    .nav-links.open { display: flex; }
+    .nav-toggle { display: block; }
+    .hero { padding: 110px 24px 60px; }
+    .hero h1 { font-size: 1.9rem; }
+    .section-header h2, .feature-text h2, .about-text h2, .contact-text h2 { font-size: 1.7rem; }
+    .feature-image img { height: 260px; }
+    .about-stats { flex-direction: column; }
+}
+    </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <img src="images/logo.png" alt="NeoSci Clinical Research" class="nav-logo-img">
+            <div class="nav-logo-text">
+                <span class="logo-neo">Neo</span><span class="logo-sci">Sci</span>
+                <span class="logo-sub">CLINICAL RESEARCH</span>
+            </div>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu">
+            <span></span><span></span><span></span>
+        </button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#physicians">Physicians</a></li>
+            <li><a href="#partnership">Partnership</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact" class="nav-cta">Book a Meeting</a></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<header class="hero" id="physicians">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+        <div class="hero-text">
+            <p class="hero-label">For Physicians</p>
+            <h1>Offer alternative treatments to your patients while improving your bottom line</h1>
+            <p class="hero-sub">NeoSci partners with private practices to bring profitable, pharma-sponsored clinical studies directly to your office — with full transparency and no hidden overhead.</p>
+            <div class="hero-actions">
+                <a href="#contact" class="btn btn-primary">Book a Meeting</a>
+                <a href="#partnership" class="btn btn-outline">Learn More</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <img src="images/doctor.jpg" alt="Physician consulting with patient about clinical study medications">
+        </div>
+    </div>
+</header>
+
+<!-- Partnership Section -->
+<section class="partnership" id="partnership">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">The NeoSci Difference</p>
+            <h2>A Transparent Clinical Study Partnership</h2>
+            <p class="section-desc">We believe physician-partners should see exactly where every dollar goes — and keep more of it.</p>
+        </div>
+        <div class="pillars">
+            <div class="pillar" data-num="01">
+                <div class="pillar-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="m9 12 2 2 4-4"/></svg>
+                </div>
+                <h3>100% Budget Transparency</h3>
+                <p>Every study we offer has complete transparency into the requirements and budget. Together we determine the appropriate percentage for each of us. With NeoSci you keep a larger share because we don't take a chunk off the top for "overhead."</p>
+            </div>
+            <div class="pillar" data-num="02">
+                <div class="pillar-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+                </div>
+                <h3>Matched to Your Specialty</h3>
+                <p>We leverage our contacts in Pharma to bring studies that align with your medical specialty and clinical interests — studies you can profitably conduct within your existing practice.</p>
+            </div>
+            <div class="pillar" data-num="03">
+                <div class="pillar-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+                </div>
+                <h3>Staff Training</h3>
+                <p>Don't depend on someone else to find a coordinator for you. We train members of your trusted staff so you maintain quality control and institutional knowledge.</p>
+            </div>
+            <div class="pillar" data-num="04">
+                <div class="pillar-icon">
+                    <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+                </div>
+                <h3>Technology Solutions</h3>
+                <p>We handle the technology side of clinical study management — from secure clinic portals to data capture — so your team can focus on patient care.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- App / Coordinator Feature -->
+<section class="feature">
+    <div class="container">
+        <div class="feature-grid">
+            <div class="feature-image">
+                <img src="images/app.jpg" alt="NeoSci Clinic Login app on mobile device">
+            </div>
+            <div class="feature-text">
+                <p class="section-label">Technology-Enabled</p>
+                <h2>Your Clinic Portal</h2>
+                <p>Our secure, mobile-friendly clinic portal gives your team instant access to study documents, patient status, and communications — all in one place. No more chasing paperwork or waiting for CRO callbacks.</p>
+            </div>
+        </div>
+        <div class="feature-grid reverse">
+            <div class="feature-image">
+                <img src="images/coordinator.jpg" alt="Study coordinator reviewing documents with patient">
+            </div>
+            <div class="feature-text">
+                <p class="section-label">Hands-On Support</p>
+                <h2>We Train Your People</h2>
+                <p>Your staff already know your patients and your workflow. We train them on study protocols, documentation, and compliance — turning your existing team into a research operation you control.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section class="services" id="services">
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Services</p>
+            <h2>The Tools to Make Your Clinical Research Successful</h2>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-num">01</div>
+                <h3>Clinical Study Contracts</h3>
+                <p>We work with Pharma companies to bring studies to your practice that are profitable for you and match your medical specialty.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-num">02</div>
+                <h3>Patient Recruitment</h3>
+                <p>We bring our patient recruitment expertise to your practice, ensuring enrollment targets are met and studies are completed successfully.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-num">03</div>
+                <h3>EMR Data Analytics</h3>
+                <p>Our data science team can analyze your EMR for insights into matching current patients with clinical studies — identifying candidates you might otherwise miss.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- About Section -->
+<section class="about" id="about">
+    <div class="container">
+        <div class="about-inner">
+            <div class="about-text">
+                <p class="section-label">About NeoSci</p>
+                <h2>40+ Years of Clinical Research Experience</h2>
+                <p>The NeoSci team has deep experience across every facet of clinical research — from Pharma study acquisition and contract negotiation to study management in a physician's office to patient recruitment and retention.</p>
+                <div class="about-areas">
+                    <h4>Therapeutic Areas</h4>
+                    <div class="area-tags">
+                        <span>Pain</span>
+                        <span>Vaccines</span>
+                        <span>COVID</span>
+                        <span>Gastrointestinal</span>
+                        <span>Dermatology</span>
+                        <span>And More</span>
+                    </div>
+                </div>
+            </div>
+            <div class="about-stats">
+                <div class="stat">
+                    <span class="stat-num">40+</span>
+                    <span class="stat-label">Years Combined Experience</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">6+</span>
+                    <span class="stat-label">Therapeutic Areas</span>
+                </div>
+                <div class="stat">
+                    <span class="stat-num">100%</span>
+                    <span class="stat-label">Budget Transparency</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact / CTA Section -->
+<section class="contact" id="contact">
+    <div class="container">
+        <div class="contact-inner">
+            <div class="contact-text">
+                <p class="section-label">Get Started</p>
+                <h2>Book a Meeting Today</h2>
+                <p>Learn how NeoSci can bring clinical studies to your practice — profitably and transparently.</p>
+            </div>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+                    <a href="mailto:contact@neosciclinicalresearch.com">contact@neosciclinicalresearch.com</a>
+                </div>
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    <a href="tel:+14357096266">+1 (435) 709-6266</a>
+                </div>
+                <div class="contact-item">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+                    <span>NeoSci Clinical Research<br>6543 N. Landmark Drive, Suite 1177<br>Park City, UT 84098</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-neo">Neo</span><span class="logo-sci">Sci</span>
+                <span class="footer-tagline">Clinical Research</span>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="#physicians">Physicians</a>
+                <span class="footer-sep">|</span>
+                <a href="#services">Services</a>
+                <span class="footer-sep">|</span>
+                <a href="#contact">Contact</a>
+            </div>
+            <p class="footer-copy">&copy; 2025 NeoSci Clinical Research. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+<script>
+// Nav scroll behavior
+const nav = document.getElementById('nav');
+let lastScroll = 0;
+window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 60);
+});
+
+// Mobile toggle
+const toggle = document.getElementById('navToggle');
+const links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => {
+    links.classList.toggle('open');
+    toggle.classList.toggle('open');
+});
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            links.classList.remove('open');
+            toggle.classList.remove('open');
+        }
+    });
+});
+
+// Scroll reveal
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.pillar, .service-card, .feature-grid, .stat, .contact-item').forEach(el => {
+    observer.observe(el);
+});
+</script>
+
+</body>
+</html>

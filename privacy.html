@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy | NeoSci Clinical Research</title>
+    <link rel="icon" type="image/png" href="images/logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+:root {
+    --navy: #0B1D3A;
+    --navy-light: #132B50;
+    --blue: #2563EB;
+    --blue-light: #3B82F6;
+    --red: #DC2626;
+    --white: #FFFFFF;
+    --off-white: #F8FAFC;
+    --gray-100: #E2E8F0;
+    --gray-400: #94A3B8;
+    --gray-600: #475569;
+    --gray-700: #334155;
+    --gray-800: #1E293B;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body { font-family: var(--font-body); color: var(--gray-800); line-height: 1.7; background: var(--white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(255,255,255,0.95); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); transition: var(--transition); border-bottom: 1px solid transparent; }
+.nav.scrolled { border-bottom-color: var(--gray-100); box-shadow: 0 1px 12px rgba(0,0,0,0.06); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-img { width: 40px; height: 40px; object-fit: contain; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-neo { font-family: var(--font-body); font-weight: 700; font-size: 1.35rem; color: var(--blue); display: inline; }
+.logo-sci { font-family: var(--font-body); font-weight: 700; font-size: 1.35rem; color: var(--red); display: inline; }
+.logo-sub { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.18em; color: var(--blue); text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-700); transition: var(--transition); }
+.nav-links a:hover { color: var(--blue); }
+.nav-cta { background: var(--blue); color: var(--white) !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--navy) !important; }
+.footer { background: var(--navy); padding: 40px 0; }
+.footer-inner { text-align: center; }
+.footer-brand { margin-bottom: 16px; }
+.footer-brand .logo-neo { font-size: 1.4rem; }
+.footer-brand .logo-sci { font-size: 1.4rem; }
+.footer-tagline { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-400); margin-top: 2px; }
+.footer-copy { font-size: 0.78rem; color: var(--gray-600); }
+.privacy { padding: 140px 24px 80px; max-width: 780px; margin: 0 auto; }
+.privacy h1 { font-family: var(--font-display); font-size: 2.4rem; color: var(--navy); margin-bottom: 8px; }
+.privacy .effective { font-size: 0.9rem; color: var(--gray-400); margin-bottom: 40px; }
+.privacy .intro { font-size: 1.02rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 36px; }
+.privacy h2 { font-family: var(--font-display); font-size: 1.4rem; color: var(--navy); margin: 36px 0 12px; }
+.privacy p, .privacy li { font-size: 0.95rem; color: var(--gray-600); line-height: 1.8; margin-bottom: 12px; }
+.privacy ul { padding-left: 24px; margin-bottom: 16px; }
+.privacy li { margin-bottom: 8px; }
+.privacy strong { color: var(--gray-700); }
+.back-link { display: inline-flex; align-items: center; gap: 6px; font-size: 0.9rem; font-weight: 500; color: var(--blue); margin-bottom: 32px; }
+.back-link:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+
+<nav class="nav scrolled" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <img src="images/logo.png" alt="NeoSci" class="nav-logo-img">
+            <div class="nav-logo-text">
+                <span class="logo-neo">Neo</span><span class="logo-sci">Sci</span>
+                <span class="logo-sub">CLINICAL RESEARCH</span>
+            </div>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#contact" class="nav-cta">Contact Us</a></li>
+        </ul>
+    </div>
+</nav>
+
+<main class="privacy">
+    <a href="index.html" class="back-link">&larr; Back to Home</a>
+    <h1>Privacy Policy</h1>
+    <p class="effective">Effective Date: October 26, 2024</p>
+
+    <p class="intro">This Privacy Policy describes how NeoSci Clinical Research ("we," "us," or "our") collects, uses, and protects the personal information of individuals who express interest in participating in our clinical research studies. This policy applies specifically to the collection of information used by NeoSci Clinical Research to contact potential research participants and assess their preliminary eligibility.</p>
+
+    <p>This policy is separate from, and does not supersede, NeoSci Clinical Research's HIPAA policies and procedures regarding protected health information (PHI).</p>
+
+    <h2>1. Information We Collect</h2>
+    <p>We may collect the following information from you:</p>
+    <ul>
+        <li><strong>Contact Information:</strong> Name, phone number, email address. This information is provided voluntarily by individuals expressing interest in participating in research or who are referred to us by their healthcare providers.</li>
+        <li><strong>Basic Demographic Information:</strong> Age, gender (if provided). This is collected to help assess general eligibility for research studies.</li>
+        <li><strong>Clinical Information:</strong> Information relevant to determining preliminary eligibility for specific research studies (e.g., diagnosis, current medications). This information will only be collected if volunteered by the individual and only to the extent necessary to determine preliminary eligibility. We will not collect PHI as defined by HIPAA.</li>
+    </ul>
+
+    <h2>2. How We Use Your Information</h2>
+    <p>We use the information collected to:</p>
+    <ul>
+        <li><strong>Contact You:</strong> To invite you to learn more about relevant research studies and determine if you meet the initial screening criteria.</li>
+        <li><strong>Assess Eligibility:</strong> To assess your preliminary eligibility for participation in a clinical research study based on the information you provide.</li>
+        <li><strong>Improve Our Research:</strong> To analyze aggregate, anonymized data to improve the design and conduct of our research studies.</li>
+    </ul>
+
+    <h2>3. Information Sharing</h2>
+    <p>We will not share your personal information with any third parties except:</p>
+    <ul>
+        <li><strong>As Required by Law:</strong> We may disclose information if required to do so by law or legal process.</li>
+        <li><strong>With Your Consent:</strong> We may share information with other researchers or collaborators with your explicit consent.</li>
+        <li><strong>Within NeoSci Clinical Research:</strong> Information may be shared internally within study partners and sites for research study management purposes. Access is limited to authorized personnel on a need-to-know basis.</li>
+    </ul>
+
+    <h2>4. Data Security</h2>
+    <p>We employ reasonable security measures to protect your personal information from unauthorized access, use, or disclosure. These measures include SSL encryption, ensuring that data transmitted between the user's browser and the server is encrypted.</p>
+    <p>NeoSci Clinical Research is committed to data privacy and complies with international regulations such as GDPR, CCPA, and LGPD.</p>
+
+    <h2>5. HIPAA Compliance</h2>
+    <p>NeoSci Clinical Research is committed to complying with all applicable provisions of the Health Insurance Portability and Accountability Act (HIPAA). This privacy policy addresses information collected outside of the scope of HIPAA, specifically focusing on the initial contact and pre-screening process for research participation. The handling of any protected health information (PHI) obtained during the research process will be governed by NeoSci Clinical Research's separate HIPAA policies and procedures.</p>
+
+    <h2>6. Your Rights</h2>
+    <p>You have the right to:</p>
+    <ul>
+        <li><strong>Access:</strong> Request access to your personal information we hold.</li>
+        <li><strong>Correction:</strong> Request correction of inaccurate or incomplete information.</li>
+        <li><strong>Withdrawal:</strong> Withdraw your consent to participate in the research screening process at any time.</li>
+    </ul>
+
+    <h2>7. Contact Us</h2>
+    <p>If you have any questions or concerns about this Privacy Policy, please contact us at <a href="mailto:contact@neosciclinicalresearch.com" style="color: var(--blue);">contact@neosciclinicalresearch.com</a>.</p>
+
+    <h2>8. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on our website. Your continued engagement with NeoSci Clinical Research after any changes constitutes your acceptance of the updated policy.</p>
+</main>
+
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-neo">Neo</span><span class="logo-sci">Sci</span>
+                <span class="footer-tagline">Clinical Research</span>
+            </div>
+            <p class="footer-copy">&copy; 2025 NeoSci Clinical Research. All rights reserved.</p>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
