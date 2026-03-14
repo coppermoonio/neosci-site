@@ -54,7 +54,7 @@ a { text-decoration: none; color: inherit; }
 .hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.25; color: var(--navy); text-align: center; margin-bottom: 40px; }
 .hero-image { border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
 .hero-image img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; }
-.hero-blocks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.hero-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
 .hero-block { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 12px; padding: 20px 28px; transition: var(--transition); }
 .hero-block:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(37,99,235,0.08); }
 .hero-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; line-height: 1.35; }
@@ -237,14 +237,13 @@ a { text-decoration: none; color: inherit; }
         </div>
         <div class="hero-actions">
             <a href="#contact" class="btn btn-primary">Schedule a Conversation</a>
-            <a href="#services" class="btn btn-outline">See Our Services</a>
         </div>
     </div>
 </header>
 
 <section class="services" id="services">
     <div class="container">
-        <img src="images/overhead_mds.png" alt="Medical team collaboration" class="services-img">
+        <img src="images/Overhead_MDs.png" alt="Medical team collaboration" class="services-img">
         <div class="section-header"><h2>A Clear Division of Responsibilities</h2></div>
         <div class="services-split">
             <div class="services-col neosci">
