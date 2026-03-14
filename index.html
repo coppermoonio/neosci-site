@@ -50,18 +50,16 @@ a { text-decoration: none; color: inherit; }
 .nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
 .hero { padding: 120px 24px 80px; position: relative; overflow: hidden; background: var(--white); }
 .hero-bg { position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%); border-radius: 50%; }
-.hero-content { max-width: 1200px; margin: 0 auto; }
-.hero-top { display: flex; align-items: center; gap: 32px; margin-bottom: 48px; }
-.hero-logo { width: 140px; height: auto; flex-shrink: 0; }
-.hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.25; color: var(--navy); }
-.hero-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
-.hero-image { border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
-.hero-image img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 16px; }
-.hero-block { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 12px; padding: 20px 24px; transition: var(--transition); }
-.hero-block:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(37,99,235,0.08); transform: translateY(-2px); }
-.hero-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.35; }
-.hero-block p { color: var(--gray-600); font-size: 0.88rem; line-height: 1.65; }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+.hero-content { max-width: 900px; margin: 0 auto; }
+.hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.25; color: var(--navy); text-align: center; margin-bottom: 40px; }
+.hero-image { border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
+.hero-image img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; }
+.hero-blocks { display: flex; flex-direction: column; gap: 16px; margin-bottom: 40px; }
+.hero-block { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 12px; padding: 20px 28px; transition: var(--transition); }
+.hero-block:hover { border-color: var(--blue); box-shadow: 0 4px 16px rgba(37,99,235,0.08); }
+.hero-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 6px; line-height: 1.35; }
+.hero-block p { color: var(--gray-600); font-size: 0.9rem; line-height: 1.65; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
 .btn { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; transition: var(--transition); cursor: pointer; }
 .btn-primary { background: var(--blue); color: var(--white); box-shadow: 0 4px 14px rgba(37,99,235,0.3); }
 .btn-primary:hover { background: #1d4ed8; box-shadow: 0 4px 20px rgba(37,99,235,0.4); transform: translateY(-1px); }
@@ -219,12 +217,9 @@ a { text-decoration: none; color: inherit; }
 <header class="hero" id="physicians">
     <div class="hero-bg"></div>
     <div class="hero-content">
-        <div class="hero-top">
-            <img src="images/NeoSci_logo.png" alt="NeoSci Clinical Research" class="hero-logo">
-            <h1>Three reasons physicians who do research partner with NeoSci</h1>
-        </div>
+        <h1>Three reasons physicians who do research partner with NeoSci</h1>
         <div class="hero-image">
-            <img src="images/Matts%20black%20MD.png" alt="Physician reviewing clinical research data">
+            <img src="images/Matts_black_MD.png" alt="Physician reviewing clinical research data">
         </div>
         <div class="hero-blocks">
             <div class="hero-block">
@@ -249,7 +244,7 @@ a { text-decoration: none; color: inherit; }
 
 <section class="services" id="services">
     <div class="container">
-        <img src="images/Overhead%20MDs.png" alt="Medical team collaboration" class="services-img">
+        <img src="images/overhead_mds.png" alt="Medical team collaboration" class="services-img">
         <div class="section-header"><h2>A Clear Division of Responsibilities</h2></div>
         <div class="services-split">
             <div class="services-col neosci">
@@ -352,7 +347,7 @@ a { text-decoration: none; color: inherit; }
                 <div class="about-areas"><h4>Therapeutic Areas</h4><div class="area-tags"><span>Psychiatry</span><span>Asthma &amp; Allergy</span><span>Pain</span><span>Vaccines</span><span>Gastrointestinal</span><span>Dermatology</span><span>And More</span></div></div>
             </div>
             <div class="about-stats">
-                <div class="about-image"><img src="images/white%20MD.png" alt="Physician in clinical setting" style="width:100%;border-radius:16px;margin-bottom:24px;"></div>
+                <div class="about-image"><img src="images/white_MD.png" alt="Physician in clinical setting" style="width:100%;border-radius:16px;margin-bottom:24px;"></div>
                 <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Years Combined Experience</span></div>
                 <div class="stat"><span class="stat-num">55%</span><span class="stat-label">Revenue to Physician Partners</span></div>
                 <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Budget Transparency</span></div>
