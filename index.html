@@ -54,10 +54,9 @@ a { text-decoration: none; color: inherit; }
 .hero-top { display: flex; align-items: center; gap: 32px; margin-bottom: 48px; }
 .hero-logo { width: 140px; height: auto; flex-shrink: 0; }
 .hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.25; color: var(--navy); }
-.hero-blocks { display: grid; grid-template-columns: 1fr; gap: 16px; }
-.hero-main { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: stretch; margin-bottom: 40px; }
-.hero-image { border-radius: 16px; overflow: hidden; }
-.hero-image img { width: 100%; height: 100%; object-fit: cover; border-radius: 16px; }
+.hero-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-bottom: 40px; }
+.hero-image { border-radius: 16px; overflow: hidden; margin-bottom: 32px; }
+.hero-image img { width: 100%; height: auto; max-height: 400px; object-fit: cover; border-radius: 16px; }
 .hero-block { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 12px; padding: 20px 24px; transition: var(--transition); }
 .hero-block:hover { border-color: var(--blue); box-shadow: 0 8px 32px rgba(37,99,235,0.08); transform: translateY(-2px); }
 .hero-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; line-height: 1.35; }
@@ -179,7 +178,7 @@ a { text-decoration: none; color: inherit; }
 .step:nth-child(5) { transition-delay: 0.1s; } .step:nth-child(6) { transition-delay: 0.2s; }
 .faq-item:nth-child(5) { transition-delay: 0.1s; } .faq-item:nth-child(6) { transition-delay: 0.2s; }
 @media (max-width: 900px) {
-    .hero h1 { font-size: 2rem; } .hero-main { grid-template-columns: 1fr; } .hero-image { max-height: 300px; }
+    .hero h1 { font-size: 2rem; } .hero-blocks { grid-template-columns: 1fr; }
     .pillars { grid-template-columns: 1fr; } .steps { grid-template-columns: 1fr; }
     .services-split { grid-template-columns: 1fr; } .financial-grid { grid-template-columns: 1fr; }
     .faq-grid { grid-template-columns: 1fr; } .req-grid { grid-template-columns: 1fr 1fr; }
@@ -202,7 +201,7 @@ a { text-decoration: none; color: inherit; }
 <nav class="nav" id="nav">
     <div class="nav-inner">
         <a href="#" class="nav-logo">
-            <img src="images/neosci_logo.png" alt="NeoSci Clinical Research" class="nav-logo-img">
+            <img src="images/NeoSci_logo.png" alt="NeoSci Clinical Research" class="nav-logo-img">
             <div class="nav-logo-text"><span class="logo-name"><span class="logo-neo">Neo</span><span class="logo-sci">Sci</span></span><span class="logo-sub">CLINICAL RESEARCH</span></div>
         </a>
         <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -221,29 +220,24 @@ a { text-decoration: none; color: inherit; }
     <div class="hero-bg"></div>
     <div class="hero-content">
         <div class="hero-top">
-            <img src="images/neosci_logo.png" alt="NeoSci Clinical Research" class="hero-logo">
+            <img src="images/NeoSci_logo.png" alt="NeoSci Clinical Research" class="hero-logo">
             <h1>Three reasons physicians who do research partner with NeoSci</h1>
         </div>
-        <div class="hero-main">
-            <div class="hero-blocks">
-                <div class="hero-block">
-                    
-                    <h3>More research dollars in your pocket.</h3>
-                    <p>Most CROs take 40&ndash;50% of your study budget and never tell you. NeoSci shows you the full budget and puts 55% directly in your hands.</p>
-                </div>
-                <div class="hero-block">
-                    
-                    <h3>We find studies that fit your practice.</h3>
-                    <p>Navigating pharma to land a new study is a full-time job. NeoSci identifies the opportunities, builds the relationships, and delivers contracted studies ready to run.</p>
-                </div>
-                <div class="hero-block">
-                    
-                    <h3>We handle patient recruitment for every study.</h3>
-                    <p>NeoSci runs targeted campaigns, screens candidates for eligibility, and coordinates visit scheduling &mdash; so your site stays on timeline and your pipeline stays full.</p>
-                </div>
+        <div class="hero-image">
+            <img src="images/Matts%20black%20MD.png" alt="Physician reviewing clinical research data">
+        </div>
+        <div class="hero-blocks">
+            <div class="hero-block">
+                <h3>More research dollars in your pocket.</h3>
+                <p>Most CROs take 40&ndash;50% of your study budget and never tell you. NeoSci shows you the full budget and puts 55% directly in your hands.</p>
             </div>
-            <div class="hero-image">
-                <img src="images/Matts%20black%20MD.png" alt="Physician reviewing clinical research data">
+            <div class="hero-block">
+                <h3>We find studies that fit your practice.</h3>
+                <p>Navigating pharma to land a new study is a full-time job. NeoSci identifies the opportunities, builds the relationships, and delivers contracted studies ready to run.</p>
+            </div>
+            <div class="hero-block">
+                <h3>We handle patient recruitment for every study.</h3>
+                <p>NeoSci runs targeted campaigns, screens candidates for eligibility, and coordinates visit scheduling &mdash; so your site stays on timeline and your pipeline stays full.</p>
             </div>
         </div>
         <div class="hero-actions">
