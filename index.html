@@ -1,378 +1,247 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>NeoSci Clinical Research | Bring Clinical Studies to Your Practice</title>
-<meta name="description" content="NeoSci partners with physicians to bring profitable clinical studies to your practice with full transparency.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
-<style>
-:root {
-    --navy: #0B1D3A; --navy-light: #132B50;
-    --teal: #0D9488; --teal-dark: #0f766e;
-    --green: #059669; --white: #FFFFFF; --off-white: #F8FAFC;
-    --gray-100: #E2E8F0; --gray-400: #94A3B8;
-    --gray-600: #475569; --gray-700: #334155; --gray-800: #1E293B;
-    --font-display: 'Playfair Display', Georgia, serif;
-    --font-body: 'DM Sans', -apple-system, sans-serif;
-    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-}
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
-body { font-family: var(--font-body); color: var(--gray-800); line-height: 1.7; background: var(--white); -webkit-font-smoothing: antialiased; }
-img { max-width: 100%; height: auto; display: block; }
-a { text-decoration: none; color: inherit; }
-.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--navy); transition: var(--transition); }
-.nav.scrolled { box-shadow: 0 4px 30px rgba(0,0,0,0.3); }
-.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
-.nav-logo { display: flex; align-items: center; gap: 10px; }
-.nav-logo-img { width: 44px; height: 44px; object-fit: contain; }
-.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
-.logo-name { display: flex; }
-.logo-neo { font-weight: 700; font-size: 1.35rem; color: var(--white); }
-.logo-sci { font-weight: 700; font-size: 1.35rem; color: var(--teal); }
-.logo-sub { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.18em; color: var(--gray-400); text-transform: uppercase; }
-.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
-.nav-links a { font-size: 0.9rem; font-weight: 500; color: rgba(255,255,255,0.85); transition: var(--transition); }
-.nav-links a:hover { color: var(--white); }
-.nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
-.nav-cta:hover { background: var(--teal-dark) !important; }
-.nav-toggle { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; }
-.nav-toggle span { display: block; width: 100%; height: 2px; background: var(--white); position: absolute; left: 0; transition: var(--transition); }
-.nav-toggle span:nth-child(1) { top: 0; } .nav-toggle span:nth-child(2) { top: 9px; } .nav-toggle span:nth-child(3) { top: 18px; }
-.nav-toggle.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
-.nav-toggle.open span:nth-child(2) { opacity: 0; }
-.nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
-.hero { padding: 120px 24px 80px; position: relative; overflow: hidden; background: var(--navy); }
-.hero-bg { position: absolute; inset: 0; background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%); }
-.hero-content { max-width: 900px; margin: 0 auto; position: relative; }
-.hero h1 { font-family: var(--font-display); font-size: 2.4rem; font-weight: 600; line-height: 1.25; color: var(--white); text-align: center; margin-bottom: 40px; }
-.hero-image { border-radius: 16px; overflow: hidden; margin-bottom: 40px; }
-.hero-image img { width: 100%; max-height: 420px; object-fit: cover; border-radius: 16px; }
-.hero-blocks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
-.hero-block { background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.15); border-radius: 12px; padding: 20px 28px; transition: var(--transition); }
-.hero-block:hover { border-color: var(--teal); }
-.hero-block h3 { font-family: var(--font-display); font-size: 1.05rem; font-weight: 600; color: var(--white); margin-bottom: 6px; line-height: 1.35; }
-.hero-block p { color: rgba(255,255,255,0.75); font-size: 0.9rem; line-height: 1.65; }
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
-.btn { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; transition: var(--transition); cursor: pointer; }
-.btn-primary { background: var(--teal); color: var(--white); box-shadow: 0 4px 14px rgba(13,148,136,0.3); }
-.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
-.section-header { text-align: center; max-width: 640px; margin: 0 auto 56px; }
-.section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
-.section-header h2 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; color: var(--navy); line-height: 1.25; margin-bottom: 16px; }
-.section-desc { font-size: 1.05rem; color: var(--gray-600); }
-.services { padding: 100px 0; background: var(--white); }
-.services-img { display: block; max-width: 700px; margin: 0 auto 40px; border-radius: 16px; }
-.services-split { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
-.services-col { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 36px 32px; }
-.services-col h3 { font-family: var(--font-display); font-size: 1.3rem; font-weight: 600; color: var(--navy); margin-bottom: 24px; text-align: center; padding-bottom: 16px; border-bottom: 2px solid; }
-.services-col.neosci h3 { border-color: var(--teal); }
-.services-col.partner h3 { border-color: var(--green); }
-.service-item { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; }
-.service-check { flex-shrink: 0; width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-top: 2px; }
-.neosci .service-check { background: rgba(13,148,136,0.15); color: var(--teal); }
-.partner .service-check { background: rgba(5,150,105,0.1); color: var(--green); }
-.service-item span { color: var(--gray-600); font-size: 0.95rem; line-height: 1.6; }
-.requirements { padding: 100px 0; background: var(--off-white); }
-.req-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.req-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 28px; opacity: 0; transform: translateY(16px); transition: var(--transition); }
-.req-card.visible { opacity: 1; transform: translateY(0); }
-.req-card:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(13,148,136,0.1); }
-.req-letter { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-size: 1.1rem; font-weight: 700; color: var(--white); margin-bottom: 16px; }
-.req-card h4 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
-.req-card p { color: var(--gray-600); font-size: 0.88rem; line-height: 1.7; }
-.how-it-works { padding: 100px 0; background: var(--white); }
-.steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.step { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 32px 28px; transition: var(--transition); opacity: 0; transform: translateY(24px); }
-.step.visible { opacity: 1; transform: translateY(0); }
-.step:hover { border-color: var(--teal); }
-.step-num { display: inline-block; background: var(--teal); color: var(--white); font-size: 0.8rem; font-weight: 700; padding: 4px 12px; border-radius: 6px; margin-bottom: 16px; }
-.step-num.partner { background: var(--green); }
-.step-badge { display: inline-block; font-size: 0.7rem; font-weight: 600; color: var(--teal); margin-left: 8px; }
-.step-badge.partner { color: var(--green); }
-.step h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--navy); margin-bottom: 10px; }
-.step p { color: var(--gray-600); font-size: 0.92rem; line-height: 1.7; }
-.financial { padding: 100px 0; background: var(--off-white); }
-.financial-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; align-items: center; }
-.financial-detail { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 36px 32px; }
-.financial-detail h3 { font-family: var(--font-display); font-size: 1.2rem; color: var(--navy); margin-bottom: 4px; }
-.financial-detail .sub { font-size: 0.9rem; color: var(--teal); font-style: italic; margin-bottom: 20px; }
-.fin-row { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--gray-100); }
-.fin-row:last-child { border-bottom: none; }
-.fin-row.highlight { background: #ECFDF5; margin: 0 -16px; padding: 12px 16px; border-radius: 8px; border-bottom: none; }
-.fin-label { color: var(--gray-600); font-size: 0.95rem; }
-.fin-label.highlight { color: var(--green); font-weight: 600; }
-.fin-value { font-weight: 700; color: var(--navy); font-size: 0.95rem; }
-.fin-value.highlight { color: var(--green); }
-.financial-callout { background: var(--green); border-radius: 16px; padding: 48px 36px; text-align: center; color: var(--white); }
-.financial-callout .big-num { font-family: var(--font-display); font-size: 2.4rem; font-weight: 700; line-height: 1.2; margin-bottom: 12px; }
-.financial-callout .caption { font-size: 1rem; opacity: 0.85; margin-bottom: 20px; }
-.financial-callout .multiply { font-size: 0.95rem; font-weight: 600; font-style: italic; }
-.financial-note { text-align: center; font-size: 0.8rem; color: var(--gray-400); font-style: italic; margin-top: 20px; }
-.faq { padding: 100px 0; background: var(--white); }
-.faq-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; }
-.faq-item { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 12px; padding: 28px; opacity: 0; transform: translateY(16px); transition: var(--transition); }
-.faq-item.visible { opacity: 1; transform: translateY(0); }
-.faq-item:hover { border-color: var(--teal); }
-.faq-q { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 12px; }
-.faq-badge { flex-shrink: 0; background: var(--teal); color: var(--white); width: 28px; height: 28px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.8rem; font-weight: 700; }
-.faq-q h4 { font-size: 0.98rem; font-weight: 600; color: var(--navy); line-height: 1.4; }
-.faq-a { color: var(--gray-600); font-size: 0.9rem; line-height: 1.7; padding-left: 40px; }
-.about { padding: 100px 0; background: var(--off-white); }
-.about-inner { display: grid; grid-template-columns: 1.4fr 1fr; gap: 60px; align-items: start; }
-.about-text h2 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
-.about-text p { color: var(--gray-600); font-size: 1.02rem; line-height: 1.8; margin-bottom: 28px; }
-.about-areas h4 { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray-700); margin-bottom: 12px; }
-.area-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-.area-tags span { padding: 6px 16px; background: var(--white); border: 1px solid var(--gray-100); border-radius: 20px; font-size: 0.85rem; font-weight: 500; color: var(--gray-700); }
-.about-stats { display: flex; flex-direction: column; gap: 24px; }
-.stat { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 28px 32px; text-align: center; opacity: 0; transform: translateY(20px); transition: var(--transition); }
-.stat.visible { opacity: 1; transform: translateY(0); }
-.stat-num { display: block; font-family: var(--font-display); font-size: 2.6rem; font-weight: 700; color: var(--teal); line-height: 1; margin-bottom: 6px; }
-.stat-label { font-size: 0.85rem; font-weight: 500; color: var(--gray-600); }
-.contact { padding: 100px 0; background: linear-gradient(135deg, #EEF2FF 0%, var(--off-white) 100%); }
-.contact-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: start; }
-.contact-text h2 { font-family: var(--font-display); font-size: 2.2rem; font-weight: 600; color: var(--navy); margin-bottom: 16px; }
-.contact-text p { color: var(--gray-600); font-size: 1.05rem; line-height: 1.8; }
-.contact-info { display: flex; flex-direction: column; gap: 20px; }
-.contact-item { display: flex; align-items: flex-start; gap: 16px; background: var(--white); padding: 20px 24px; border-radius: 12px; border: 1px solid var(--gray-100); transition: var(--transition); opacity: 0; transform: translateY(16px); }
-.contact-item.visible { opacity: 1; transform: translateY(0); }
-.contact-item:hover { border-color: var(--teal); box-shadow: 0 4px 16px rgba(13,148,136,0.1); }
-.contact-item svg { color: var(--teal); flex-shrink: 0; margin-top: 2px; }
-.contact-item a, .contact-item span { font-size: 0.95rem; color: var(--gray-700); line-height: 1.6; }
-.contact-item a:hover { color: var(--teal); }
-.footer { background: var(--navy); padding: 40px 0; }
-.footer-inner { text-align: center; }
-.footer-brand { margin-bottom: 16px; }
-.footer-brand .logo-neo { font-size: 1.4rem; font-family: var(--font-display); font-weight: 700; color: var(--white); }
-.footer-brand .logo-sci { font-size: 1.4rem; font-family: var(--font-display); font-weight: 700; color: var(--teal); }
-.footer-tagline { display: block; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gray-400); margin-top: 2px; }
-.footer-links { margin-bottom: 16px; }
-.footer-links a { color: var(--gray-400); font-size: 0.85rem; transition: var(--transition); }
-.footer-links a:hover { color: var(--white); }
-.footer-sep { color: var(--gray-600); margin: 0 12px; font-size: 0.8rem; }
-.footer-copy { font-size: 0.78rem; color: var(--gray-600); }
-.pillar,.step,.faq-item,.req-card,.stat,.contact-item { transition: opacity 0.6s ease, transform 0.6s ease, border-color 0.3s ease, box-shadow 0.3s ease; }
-.pillar:nth-child(2),.step:nth-child(2),.faq-item:nth-child(2),.req-card:nth-child(2),.stat:nth-child(2),.contact-item:nth-child(2) { transition-delay: 0.1s; }
-.pillar:nth-child(3),.step:nth-child(3),.faq-item:nth-child(3),.req-card:nth-child(3),.stat:nth-child(3),.contact-item:nth-child(3) { transition-delay: 0.2s; }
-.pillar:nth-child(4),.faq-item:nth-child(4) { transition-delay: 0.3s; }
-.step:nth-child(5),.faq-item:nth-child(5) { transition-delay: 0.1s; }
-.step:nth-child(6),.faq-item:nth-child(6) { transition-delay: 0.2s; }
-@media (max-width: 900px) {
-    .hero h1 { font-size: 2rem; } .hero-blocks { grid-template-columns: 1fr; }
-    .steps { grid-template-columns: 1fr; } .services-split { grid-template-columns: 1fr; }
-    .financial-grid { grid-template-columns: 1fr; } .faq-grid { grid-template-columns: 1fr; }
-    .req-grid { grid-template-columns: 1fr 1fr; } .about-inner { grid-template-columns: 1fr; }
-    .about-stats { flex-direction: row; flex-wrap: wrap; } .stat { flex: 1; min-width: 140px; }
-    .contact-inner { grid-template-columns: 1fr; }
-}
-@media (max-width: 640px) {
-    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--navy); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .nav-links.open { display: flex; } .nav-toggle { display: block; }
-    .hero { padding: 100px 24px 60px; } .hero h1 { font-size: 1.7rem; }
-    .req-grid { grid-template-columns: 1fr; } .about-stats { flex-direction: column; }
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NeoSci Site Network | Clinical Research Revenue for Physician Practices</title>
+<meta name="description" content="NeoSci Site Network brings pharma-sponsored clinical studies to physician practices. Full budget visibility. 55% of study revenue to the physician.">
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
 
-<nav class="nav" id="nav">
-    <div class="nav-inner">
-        <a href="#" class="nav-logo">
-            <div class="nav-logo-text"><span class="logo-name"><span class="logo-neo">Neo</span><span class="logo-sci">Sci</span></span><span class="logo-sub">CLINICAL RESEARCH</span></div>
-        </a>
-        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-        <ul class="nav-links" id="navLinks">
-            <li><a href="#services">Services</a></li>
-            <li><a href="#requirements">Requirements</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#faq">FAQ</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact" class="nav-cta">Contact Us</a></li>
-        </ul>
-    </div>
-</nav>
-
-<header class="hero" id="physicians">
-    <div class="hero-bg"></div>
-    <div class="hero-content">
-        <h1>Three reasons physicians who do research partner with NeoSci</h1>
-        <div class="hero-image">
-            <img src="images/Matts_black_MD.png" alt="Physician reviewing clinical research data">
-        </div>
-        <div class="hero-blocks">
-            <div class="hero-block">
-                <h3>More research dollars in your pocket.</h3>
-                <p>Most CROs take 40&ndash;50% of your study budget and never tell you. NeoSci shows you the full budget and puts 55% directly in your hands.</p>
-            </div>
-            <div class="hero-block">
-                <h3>We find studies that fit your practice.</h3>
-                <p>Navigating pharma to land a new study is a full-time job. NeoSci identifies the opportunities, builds the relationships, and delivers contracted studies ready to run.</p>
-            </div>
-            <div class="hero-block">
-                <h3>We handle patient recruitment for every study.</h3>
-                <p>NeoSci runs targeted campaigns, screens candidates for eligibility, and coordinates visit scheduling &mdash; so your site stays on timeline and your pipeline stays full.</p>
-            </div>
-        </div>
-        <div class="hero-actions">
-            <a href="#contact" class="btn btn-primary">Schedule a Conversation</a>
-        </div>
-    </div>
+<header class="top">
+  <div class="wrap">
+    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><span>NeoSci<small>Site Network</small></span></a>
+    <button class="menu-btn" aria-label="Menu">&#9776;</button>
+    <nav class="main">
+      <a href="#services">Services</a>
+      <a href="#requirements">Requirements</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#faq">FAQ</a>
+      <a href="#about">About</a>
+      <a href="find-a-study.html">Find a Study</a>
+      <a class="cta" href="#contact">Contact Us</a>
+    </nav>
+  </div>
 </header>
 
-<section class="services" id="services">
-    <div class="container">
-        <img src="images/Overhead_MDs.png" alt="Medical team collaboration" class="services-img">
-        <div class="section-header"><h2>A Clear Division of Responsibilities</h2></div>
-        <div class="services-split">
-            <div class="services-col neosci">
-                <h3>NeoSci Provides</h3>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Study opportunities &amp; business development</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Budget &amp; contract negotiation with sponsors</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Complete site setup &amp; regulatory</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Clinical Trial Management System (CTMS)</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Staff training &mdash; GCP, protocols, compliance</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Ongoing quality assurance &amp; monitoring</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Patient recruitment support*</span></div>
-            </div>
-            <div class="services-col partner">
-                <h3>Physician Partner Provides</h3>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Principal Investigator (PI) role</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Clinical coordinator from your staff</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Sub-investigators &amp; other staff as required</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Perform procedures per protocol</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Patient recruitment from your base</span></div>
-                <div class="service-item"><div class="service-check"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m9 12 2 2 4-4"/></svg></div><span>Patient data collection</span></div>
-            </div>
-        </div>
+<section class="hero" id="physicians">
+  <div class="wrap">
+    <div class="eyebrow">For physicians</div>
+    <h1>Put more research dollars in your pocket.</h1>
+    <p class="lead">NeoSci Site Network brings pharma-sponsored studies to your practice. You see the full budget. You keep 55%.</p>
+    <div class="actions">
+      <a class="btn btn-primary" href="#contact">Schedule a Conversation</a>
+      <a class="btn btn-ghost" href="#how-it-works">How It Works</a>
     </div>
+  </div>
 </section>
 
-<section class="requirements" id="requirements">
-    <div class="container">
-        <div class="section-header"><p class="section-label">Site Requirements</p><h2>What Your Practice Needs</h2><p class="section-desc">Most private practices already have the essentials.</p></div>
-        <img src="images/Medical-office.jpeg" alt="Medical office space" style="display:block;max-width:700px;margin:0 auto 40px;border-radius:16px;width:100%;">
-        <div class="req-grid">
-            <div class="req-card"><div class="req-letter" style="background:var(--teal)">A</div><h4>Patient Exam Space</h4><p>Dedicated or shared exam room for research patient visits &mdash; your existing rooms work. Schedule around normal patient flow.</p></div>
-            <div class="req-card"><div class="req-letter" style="background:var(--teal)">B</div><h4>Coordinator Workspace</h4><p>Desk with PC and reliable internet access for your study coordinator. Used for data entry, eCRF, and electronic source documents.</p></div>
-            <div class="req-card"><div class="req-letter" style="background:var(--teal)">C</div><h4>Conference / Monitor Room</h4><p>Room for sponsor monitor visits, site initiation visits, and training sessions. Can double as a break room or office.</p></div>
-            <div class="req-card"><div class="req-letter" style="background:var(--green)">D</div><h4>Secure Drug Storage</h4><p>Lockable room with lockable cabinet for investigational product. Dedicated secure refrigerator, freezer, and ambient storage with temperature monitoring.</p></div>
-            <div class="req-card"><div class="req-letter" style="background:var(--green)">E</div><h4>Lab / Sample Processing</h4><p>Centrifuge and basic lab supplies for specimen processing. Dedicated secure refrigerator and freezer for sample storage before shipment to central lab.</p></div>
-            <div class="req-card"><div class="req-letter" style="background:var(--gray-700)">F</div><h4>Additional Requirements</h4><p>Reliable phone/fax line, secure filing for regulatory binders, adequate parking for research patients, and after-hours patient contact process.</p></div>
-        </div>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Why NeoSci</div>
+      <h2>Three reasons physicians who do research partner with NeoSci</h2>
     </div>
+    <div class="grid g3">
+      <div class="card reason"><h3>More research dollars in your pocket</h3><p>Most CROs take 40–50% of your study budget and never tell you. NeoSci shows you the full budget and puts 55% directly in your hands.</p></div>
+      <div class="card reason"><h3>Studies that fit your practice</h3><p>Landing a pharma study is a full-time job. NeoSci finds the opportunities, builds the relationships, and delivers contracted studies ready to run.</p></div>
+      <div class="card reason"><h3>Patient recruitment for every study</h3><p>NeoSci runs targeted campaigns, prescreens candidates, and schedules visits. Your site stays on timeline and your pipeline stays full.</p></div>
+    </div>
+  </div>
 </section>
 
-<section class="how-it-works" id="how-it-works">
-    <div class="container">
-        <div class="section-header"><p class="section-label">How It Works</p><h2>Your Path to Clinical Research Revenue</h2></div>
-        <img src="images/latin_mds.png" alt="Physicians collaborating" style="display:block;max-width:700px;margin:0 auto 40px;border-radius:16px;width:100%;">
-        <div class="steps">
-            <div class="step"><span class="step-num">01</span><span class="step-badge">NeoSci</span><h3>Contracting</h3><p>Execute agreements and regulatory documents.</p></div>
-            <div class="step"><span class="step-num">02</span><span class="step-badge">NeoSci</span><h3>Site Setup</h3><p>Prepare your office with required equipment and technology infrastructure.</p></div>
-            <div class="step"><span class="step-num">03</span><span class="step-badge">NeoSci</span><h3>Staff Training</h3><p>Your team trained on protocols, GCP, documentation, and compliance.</p></div>
-            <div class="step"><span class="step-num">04</span><span class="step-badge">NeoSci</span><h3>Study Matched</h3><p>We bring pharma-sponsored studies aligned to your specialty.</p></div>
-            <div class="step"><span class="step-num partner">05</span><span class="step-badge partner">Partner</span><h3>Enroll Patients</h3><p>Recruit from your existing patient base. We support recruitment.</p></div>
-            <div class="step"><span class="step-num partner">06</span><span class="step-badge partner">Partner</span><h3>Conduct &amp; Earn</h3><p>Execute the protocol, collect data, receive payment.</p></div>
-        </div>
+<section class="alt split" id="services">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Services</div>
+      <h2>A clear division of responsibilities</h2>
     </div>
+    <div class="grid g2">
+      <div class="card ns">
+        <h3>NeoSci provides</h3>
+        <ul>
+          <li>Study opportunities &amp; business development</li>
+          <li>Budget &amp; contract negotiation with sponsors</li>
+          <li>Complete site setup &amp; regulatory</li>
+          <li>Clinical Trial Management System (CTMS)</li>
+          <li>Staff training: GCP, protocols, compliance</li>
+          <li>Ongoing quality assurance &amp; monitoring</li>
+          <li>Patient recruitment and prescreening support*</li>
+        </ul>
+      </div>
+      <div class="card partner">
+        <h3>Physician partner provides</h3>
+        <ul>
+          <li>Principal Investigator (PI) role</li>
+          <li>Clinical coordinator from your staff</li>
+          <li>Sub-investigators &amp; other staff as required</li>
+          <li>Procedures per protocol</li>
+          <li>Patient recruitment from your base</li>
+          <li>Patient data collection</li>
+        </ul>
+      </div>
+    </div>
+    <p class="note">*Recruitment support varies by study and sponsor budget.</p>
+  </div>
 </section>
 
-<section class="financial" id="financial">
-    <div class="container">
-        <div class="section-header"><p class="section-label">Illustrative Example</p><h2>What a Study Could Mean for You</h2></div>
-        <div class="financial-grid">
-            <div class="financial-detail">
-                <h3>Sample Asthma / Allergy Biologic Study</h3>
-                <p class="sub">Phase III &mdash; Novel Therapy</p>
-                <div class="fin-row"><span class="fin-label">Per-patient revenue</span><span class="fin-value">$10,000 &ndash; $20,000</span></div>
-                <div class="fin-row"><span class="fin-label">Target enrollment</span><span class="fin-value">15 patients</span></div>
-                <div class="fin-row"><span class="fin-label">Total study revenue</span><span class="fin-value">$150,000 &ndash; $300,000</span></div>
-                <div class="fin-row highlight"><span class="fin-label highlight">Your share (55%)</span><span class="fin-value highlight">$82,500 &ndash; $165,000</span></div>
-                <div class="fin-row"><span class="fin-label">Study duration</span><span class="fin-value">~24&ndash;52 weeks</span></div>
-            </div>
-            <div class="financial-callout">
-                <div class="big-num">$82,500 &ndash;<br>$165,000</div>
-                <div class="caption">Your estimated revenue from a single study</div>
-                <div class="multiply">Multiple concurrent studies = multiply this number</div>
-            </div>
-        </div>
-        <p class="financial-note">Illustrative only. Actual results vary by study design, enrollment, and contract terms.</p>
+<section class="req" id="requirements">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">Requirements</div>
+      <h2>What your practice needs</h2>
+      <p>Most private practices already have the essentials.</p>
     </div>
+    <div class="grid g3">
+      <div class="card"><div class="letter">A</div><h3>Patient exam space</h3><p>Your existing exam rooms work. Schedule research visits around normal patient flow.</p></div>
+      <div class="card"><div class="letter">B</div><h3>Coordinator workspace</h3><p>Desk, PC, and reliable internet for your study coordinator. Used for data entry, eCRF, and electronic source documents.</p></div>
+      <div class="card"><div class="letter">C</div><h3>Conference / monitor room</h3><p>Room for sponsor monitor visits, site initiation visits, and training. Can double as a break room or office.</p></div>
+      <div class="card"><div class="letter">D</div><h3>Secure drug storage</h3><p>Lockable room and cabinet for investigational product. Secure refrigerator, freezer, and ambient storage with temperature monitoring.</p></div>
+      <div class="card"><div class="letter">E</div><h3>Lab / sample processing</h3><p>Centrifuge and basic lab supplies. Secure refrigerator and freezer for samples before shipment to the central lab.</p></div>
+      <div class="card"><div class="letter">F</div><h3>Additional requirements</h3><p>Phone/fax line, secure filing for regulatory binders, patient parking, and an after-hours patient contact process.</p></div>
+    </div>
+  </div>
 </section>
 
-<section class="faq" id="faq">
-    <div class="container">
-        <div class="section-header"><p class="section-label">Frequently Asked Questions</p><h2>What Physicians Want to Know</h2></div>
-        <div class="faq-grid">
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>Will clinical research disrupt my patient care?</h4></div><p class="faq-a">No. Studies are scheduled around your practice flow. Research visits use existing exam rooms during available time slots. Your primary care operations remain the priority.</p></div>
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>How long before I start earning revenue?</h4></div><p class="faq-a">Site setup typically takes 4&ndash;8 weeks. Revenue begins with your first enrolled patient. NeoSci pays within 15&ndash;30 days of receiving sponsor payment.</p></div>
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>How much of my time is required as PI?</h4></div><p class="faq-a">Typically 15&ndash;30 minutes per patient visit for oversight, plus protocol-specific assessments. NeoSci and your trained coordinator handle the administrative burden.</p></div>
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>What happens if a study is cancelled mid-trial?</h4></div><p class="faq-a">Sponsors pay for all work completed through the cancellation date. You are compensated for every patient visit and procedure already performed.</p></div>
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>What if a study isn't a good fit for my practice?</h4></div><p class="faq-a">You have full approval rights on every study. NeoSci matches opportunities to your specialty, patient demographics, and capacity. You never have to accept a study.</p></div>
-            <div class="faq-item"><div class="faq-q"><span class="faq-badge">Q</span><h4>Do I need prior research experience?</h4></div><p class="faq-a">No. NeoSci provides comprehensive GCP training, protocol-specific training, and ongoing mentorship. Many successful PIs started with zero research background.</p></div>
-        </div>
+<section class="alt" id="how-it-works">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">How it works</div>
+      <h2>Your path to clinical research revenue</h2>
     </div>
+    <div class="grid g3 steps">
+      <div class="card step"><div class="num">01 <span class="tag ns">NeoSci</span></div><h3>Contracting</h3><p>Execute agreements and regulatory documents.</p></div>
+      <div class="card step"><div class="num">02 <span class="tag ns">NeoSci</span></div><h3>Site setup</h3><p>Prepare your office with required equipment and technology.</p></div>
+      <div class="card step"><div class="num">03 <span class="tag ns">NeoSci</span></div><h3>Staff training</h3><p>Your team trained on protocols, GCP, documentation, and compliance.</p></div>
+      <div class="card step"><div class="num">04 <span class="tag ns">NeoSci</span></div><h3>Study matched</h3><p>We bring pharma-sponsored studies aligned to your specialty.</p></div>
+      <div class="card step"><div class="num">05 <span class="tag pt">Partner</span></div><h3>Enroll patients</h3><p>Recruit from your patient base. NeoSci prescreens and schedules.</p></div>
+      <div class="card step"><div class="num">06 <span class="tag pt">Partner</span></div><h3>Conduct &amp; earn</h3><p>Run the protocol, collect data, get paid.</p></div>
+    </div>
+  </div>
 </section>
 
-<section class="about" id="about">
-    <div class="container">
-        <div class="about-inner">
-            <div class="about-text">
-                <p class="section-label">About NeoSci</p>
-                <h2>40+ Years of Clinical Research Experience</h2>
-                <p>The NeoSci team has deep experience across every facet of clinical research &mdash; from Pharma study acquisition and contract negotiation to study management in a physician's office to patient recruitment and retention.</p>
-                <div class="about-areas"><h4>Therapeutic Areas</h4><div class="area-tags"><span>Psychiatry</span><span>Asthma &amp; Allergy</span><span>Pain</span><span>Vaccines</span><span>Gastrointestinal</span><span>Dermatology</span><span>And More</span></div></div>
-            </div>
-            <div class="about-stats">
-                <div><img src="images/white_MD.png" alt="Physician in clinical setting" style="width:100%;border-radius:16px;margin-bottom:24px;"></div>
-                <div class="stat"><span class="stat-num">40+</span><span class="stat-label">Years Combined Experience</span></div>
-                <div class="stat"><span class="stat-num">55%</span><span class="stat-label">Revenue to Physician Partners</span></div>
-                <div class="stat"><span class="stat-num">100%</span><span class="stat-label">Budget Transparency</span></div>
-            </div>
-        </div>
+<section>
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">The numbers</div>
+      <h2>What a study could mean for you</h2>
+      <p>Sample asthma / allergy biologic study. Phase III, novel therapy.</p>
     </div>
+    <div class="fin">
+      <table class="ftab">
+        <tr><td>Per-patient revenue</td><td>$10,000 – $20,000</td></tr>
+        <tr><td>Target enrollment</td><td>15 patients</td></tr>
+        <tr><td>Total study revenue</td><td>$150,000 – $300,000</td></tr>
+        <tr class="hl"><td>Your share (55%)</td><td>$82,500 – $165,000</td></tr>
+        <tr><td>Study duration</td><td>~24–52 weeks</td></tr>
+      </table>
+      <div class="bigstat">
+        <div class="eyebrow" style="color:#9FC0F5">One study</div>
+        <div class="v">$82,500 – $165,000</div>
+        <p>Estimated revenue to your practice. Run concurrent studies and multiply it.</p>
+      </div>
+    </div>
+    <p class="note">Illustrative only. Actual results vary by study design, enrollment, and contract terms.</p>
+  </div>
 </section>
 
-<section class="contact" id="contact">
-    <div class="container">
-        <div class="contact-inner">
-            <div class="contact-text">
-                <p class="section-label">Get Started</p>
-                <h2>Ready to Put More Research Dollars in Your Pocket?</h2>
-                <p>Let's start with a confidential conversation about how clinical research can become a profitable part of your practice &mdash; with zero upfront cost.</p>
-            </div>
-            <div class="contact-info">
-                <div class="contact-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg><a href="mailto:contact@neosciclinicalresearch.com">contact@neosciclinicalresearch.com</a></div>
-                <div class="contact-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg><a href="tel:+14357096266">+1 (435) 709-6266</a></div>
-                <div class="contact-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg><a href="https://www.linkedin.com/company/neosci-clinical-research" target="_blank" rel="noopener">NeoSci on LinkedIn</a></div>
-                <div class="contact-item"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span>NeoSci Clinical Research<br>6543 N. Landmark Drive, Suite 1177<br>Park City, UT 84098</span></div>
-            </div>
-        </div>
+<section class="alt" id="faq">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">FAQ</div>
+      <h2>What physicians want to know</h2>
     </div>
+    <details><summary>Will clinical research disrupt my patient care?</summary><p>No. Studies fit around your practice flow. Research visits use existing exam rooms during open time slots. Your practice operations stay the priority.</p></details>
+    <details><summary>How long before I start earning revenue?</summary><p>Site setup takes 4–8 weeks. Revenue starts with your first enrolled patient. NeoSci pays within 15–30 days of receiving sponsor payment.</p></details>
+    <details><summary>How much of my time does the PI role take?</summary><p>About 15–30 minutes per patient visit for oversight, plus protocol-specific assessments. NeoSci and your trained coordinator handle the administrative work.</p></details>
+    <details><summary>What happens if a sponsor cancels a study mid-trial?</summary><p>Sponsors pay for all work completed through the cancellation date. You get paid for every visit and procedure already performed.</p></details>
+    <details><summary>What if a study isn't a good fit for my practice?</summary><p>You approve every study. NeoSci matches opportunities to your specialty, patient demographics, and capacity. You never have to accept a study.</p></details>
+    <details><summary>Do I need prior research experience?</summary><p>No. NeoSci provides GCP training, protocol-specific training, and ongoing mentorship. Many successful PIs started with no research background.</p></details>
+  </div>
 </section>
 
-<footer class="footer">
-    <div class="container">
-        <div class="footer-inner">
-            <div class="footer-brand"><span class="logo-neo">Neo</span><span class="logo-sci">Sci</span><span class="footer-tagline">Clinical Research</span></div>
-            <div class="footer-links"><a href="#physicians">For Physicians</a><span class="footer-sep">|</span><a href="#services">Services</a><span class="footer-sep">|</span><a href="#faq">FAQ</a><span class="footer-sep">|</span><a href="#contact">Contact</a></div>
-            <p class="footer-copy">&copy; 2026 NeoSci Clinical Research. All rights reserved.</p>
-        </div>
+<section id="about">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="eyebrow">About</div>
+      <h2>40+ years of clinical research experience</h2>
+      <p>The NeoSci team covers every part of clinical research: pharma study acquisition, contract negotiation, in-office study management, and patient recruitment and retention.</p>
     </div>
+    <h3>Therapeutic areas</h3>
+    <div class="chips">
+      <span class="chip">Psychiatry</span><span class="chip">Dermatology</span><span class="chip">Asthma &amp; Allergy</span>
+      <span class="chip">Pain</span><span class="chip">Vaccines</span><span class="chip">Gastrointestinal</span><span class="chip">And more</span>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="v">40+</div>Years combined experience</div>
+      <div class="stat"><div class="v">55%</div>Revenue to physician partners</div>
+      <div class="stat"><div class="v">100%</div>Budget transparency</div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="contact">
+  <div class="wrap contact">
+    <div>
+      <div class="eyebrow">Get started</div>
+      <h2 style="font-size:34px;line-height:1.2;margin:8px 0 12px">Ready to put more research dollars in your pocket?</h2>
+      <p style="color:var(--gray)">Start with a confidential conversation. Zero upfront cost.</p>
+      <ul>
+        <li><b>Email</b> <a href="mailto:contact@neosciclinicalresearch.com">contact@neosciclinicalresearch.com</a></li>
+        <li><b>Phone</b> <a href="tel:+14357096266">+1 (435) 709-6266</a></li>
+        <li><b>LinkedIn</b> <a href="https://www.linkedin.com/company/neosci-clinical-research" target="_blank" rel="noopener">NeoSci on LinkedIn</a></li>
+        <li><b>Address</b> 6543 N. Landmark Drive, Suite 1177, Park City, UT 84098</li>
+      </ul>
+    </div>
+    <form class="lead-form" id="physician-form">
+      <h3>Request more information</h3>
+      <div class="frow">
+        <div><label for="fn">First name*</label><input id="fn" name="firstname" required autocomplete="given-name"></div>
+        <div><label for="ln">Last name*</label><input id="ln" name="lastname" required autocomplete="family-name"></div>
+      </div>
+      <div class="frow">
+        <div><label for="em">Email*</label><input id="em" name="email" type="email" required autocomplete="email"></div>
+        <div><label for="ph">Phone</label><input id="ph" name="phone" type="tel" autocomplete="tel"></div>
+      </div>
+      <label for="co">Practice name*</label><input id="co" name="company" required autocomplete="organization">
+      <div class="frow">
+        <div><label for="ci">City</label><input id="ci" name="city" autocomplete="address-level2"></div>
+        <div><label for="st">State</label><input id="st" name="state" autocomplete="address-level1"></div>
+      </div>
+      <div class="frow">
+        <div><label for="sp">Specialty*</label>
+          <select id="sp" name="specialty" required>
+            <option value="">Select…</option><option>Psychiatry</option><option>Dermatology</option><option>Allergy / Immunology</option>
+            <option>Pain management</option><option>Gastroenterology</option><option>Primary care</option><option>Other</option>
+          </select></div>
+        <div><label for="ex">Research experience</label>
+          <select id="ex" name="experience"><option value="">Select…</option><option>None</option><option>Sub-investigator</option><option>Principal Investigator</option></select></div>
+      </div>
+      <label for="ps">Number of providers</label>
+      <select id="ps" name="practice_size"><option value="">Select…</option><option>1</option><option>2–5</option><option>6–15</option><option>16+</option></select>
+      <label for="ms">Anything else?</label><textarea id="ms" name="message"></textarea>
+      <button class="btn btn-primary" type="submit" style="margin-top:16px;width:100%">Request a Conversation</button>
+      <div class="form-msg" role="status"></div>
+      <p class="consent">We use your information only to contact you about NeoSci. We never sell it.</p>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" style="width:28px"><span>NeoSci<small>Site Network</small></span></a>
+      <div><a href="#physicians">For Physicians</a> &nbsp;|&nbsp; <a href="find-a-study.html">Find a Study</a> &nbsp;|&nbsp; <a href="#services">Services</a> &nbsp;|&nbsp; <a href="#faq">FAQ</a> &nbsp;|&nbsp; <a href="#contact">Contact</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy</a></div>
+    </div>
+    <div class="legal">© <span class="yr">2026</span> NeoSci Clinical Research. NeoSci Site Network is a service of NeoSci Clinical Research. All rights reserved.</div>
+  </div>
 </footer>
 
-<script>
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',window.scrollY>60));
-const toggle=document.getElementById('navToggle'),links=document.getElementById('navLinks');
-toggle.addEventListener('click',()=>{links.classList.toggle('open');toggle.classList.toggle('open');});
-document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();const t=document.querySelector(a.getAttribute('href'));if(t){t.scrollIntoView({behavior:'smooth',block:'start'});links.classList.remove('open');toggle.classList.remove('open');}});});
-const obs=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});},{threshold:0.1,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.pillar,.step,.faq-item,.req-card,.stat,.contact-item').forEach(el=>obs.observe(el));
-</script>
+<script src="assets/config.js"></script>
+<script src="assets/site.js"></script>
 </body>
 </html>
