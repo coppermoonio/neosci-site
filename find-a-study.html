@@ -1,110 +1,283 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Find a Clinical Study Near You | NeoSci Site Network</title>
 <meta name="description" content="Find a clinical research study at a NeoSci Site Network practice. Check if you qualify online and schedule a call with a study screener.">
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="assets/style.css">
+<link rel="icon" type="image/png" href="images/NeoSci_logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+    --navy: #0B1D3A; --navy-light: #132B50;
+    --teal: #0D9488; --teal-dark: #0f766e;
+    --green: #059669; --white: #FFFFFF; --off-white: #F8FAFC;
+    --gray-100: #E2E8F0; --gray-400: #94A3B8;
+    --gray-600: #475569; --gray-700: #334155; --gray-800: #1E293B;
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'DM Sans', -apple-system, sans-serif;
+    --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { font-family: var(--font-body); color: var(--gray-800); line-height: 1.7; background: var(--white); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; height: auto; display: block; }
+a { text-decoration: none; color: inherit; }
+.container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: var(--white); border-bottom: 1px solid var(--gray-100); transition: var(--transition); }
+.nav.scrolled { box-shadow: 0 4px 24px rgba(11,29,58,0.08); }
+.nav-inner { max-width: 1200px; margin: 0 auto; padding: 0 24px; display: flex; align-items: center; justify-content: space-between; height: 72px; }
+.nav-logo { display: flex; align-items: center; gap: 10px; }
+.nav-logo-text { display: flex; flex-direction: column; line-height: 1.1; }
+.logo-name { display: flex; }
+.logo-neo { font-weight: 700; font-size: 1.35rem; color: var(--navy); }
+.logo-sci { font-weight: 700; font-size: 1.35rem; color: var(--teal); }
+.logo-sub { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.18em; color: var(--gray-400); text-transform: uppercase; }
+.nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+.nav-links a { font-size: 0.9rem; font-weight: 500; color: var(--gray-700); transition: var(--transition); }
+.nav-links a:hover { color: var(--navy); }
+.nav-cta { background: var(--teal) !important; color: var(--white) !important; padding: 10px 22px; border-radius: 8px; font-weight: 600 !important; }
+.nav-cta:hover { background: var(--teal-dark) !important; }
+.nav-toggle { display: none; background: none; border: none; cursor: pointer; width: 28px; height: 20px; position: relative; }
+.nav-toggle span { display: block; width: 100%; height: 2px; background: var(--navy); position: absolute; left: 0; transition: var(--transition); }
+.nav-toggle span:nth-child(1) { top: 0; } .nav-toggle span:nth-child(2) { top: 9px; } .nav-toggle span:nth-child(3) { top: 18px; }
+.nav-toggle.open span:nth-child(1) { top: 9px; transform: rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { top: 9px; transform: rotate(-45deg); }
+
+.hero { padding: 140px 24px 80px; text-align: center; background: linear-gradient(135deg, var(--off-white) 0%, var(--white) 60%); }
+.hero .eyebrow { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 14px; }
+.hero h1 { font-family: var(--font-display); font-size: 2.6rem; font-weight: 600; line-height: 1.25; color: var(--navy); max-width: 760px; margin: 0 auto 20px; }
+.hero .lead { font-size: 1.1rem; color: var(--gray-600); max-width: 640px; margin: 0 auto 36px; }
+.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; }
+.btn { display: inline-flex; align-items: center; padding: 14px 28px; border-radius: 10px; font-size: 0.95rem; font-weight: 600; transition: var(--transition); cursor: pointer; border: none; }
+.btn-primary { background: var(--teal); color: var(--white); box-shadow: 0 4px 14px rgba(13,148,136,0.3); }
+.btn-primary:hover { background: var(--teal-dark); transform: translateY(-1px); }
+.btn-ghost { background: var(--white); color: var(--navy); border: 1px solid var(--gray-100); }
+.btn-ghost:hover { border-color: var(--teal); color: var(--teal); }
+
+.section-header { text-align: center; max-width: 640px; margin: 0 auto 48px; }
+.section-label { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--teal); margin-bottom: 12px; }
+.section-header h2 { font-family: var(--font-display); font-size: 2rem; font-weight: 600; color: var(--navy); line-height: 1.25; }
+
+.how3 { padding: 90px 0; background: var(--white); }
+.grid { display: grid; gap: 24px; }
+.g3 { grid-template-columns: repeat(3, 1fr); }
+.g2 { grid-template-columns: repeat(2, 1fr); }
+.card { background: var(--off-white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 28px; transition: var(--transition); }
+.card:hover { border-color: var(--teal); }
+.card .n { width: 36px; height: 36px; border-radius: 50%; background: var(--teal); color: var(--white); display: flex; align-items: center; justify-content: center; font-family: var(--font-display); font-weight: 700; margin-bottom: 16px; }
+.card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--navy); margin-bottom: 8px; }
+.card p { color: var(--gray-600); font-size: 0.92rem; }
+
+.alt { padding: 90px 0; background: var(--off-white); }
+.study-filter { display: flex; gap: 16px; flex-wrap: wrap; justify-content: center; margin-bottom: 36px; }
+.study-filter select { padding: 12px 16px; border: 1px solid var(--gray-100); border-radius: 8px; font-family: var(--font-body); font-size: 0.95rem; color: var(--gray-700); background: var(--white); min-width: 200px; }
+.study-card { background: var(--white); border: 1px solid var(--gray-100); border-radius: 16px; padding: 28px; }
+.study-card h3 { font-family: var(--font-display); font-size: 1.1rem; color: var(--navy); margin-bottom: 6px; }
+.study-card .meta { font-size: 0.82rem; color: var(--teal); font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 12px; }
+.study-card p { color: var(--gray-600); font-size: 0.92rem; margin-bottom: 18px; }
+.study-card .btn { width: 100%; justify-content: center; }
+.no-results { text-align: center; color: var(--gray-400); font-size: 0.95rem; padding: 40px 0; grid-column: 1 / -1; }
+.sample-note { text-align: center; font-size: 0.8rem; color: var(--gray-400); font-style: italic; margin-top: 24px; }
+
+#faq { padding: 90px 0; background: var(--white); }
+#faq details { border: 1px solid var(--gray-100); border-radius: 12px; padding: 20px 24px; margin-bottom: 14px; max-width: 760px; margin-left: auto; margin-right: auto; }
+#faq summary { font-weight: 600; color: var(--navy); cursor: pointer; font-size: 0.98rem; }
+#faq details p { color: var(--gray-600); font-size: 0.92rem; margin-top: 12px; line-height: 1.7; }
+
+.disclaimer-section { padding: 48px 0; background: var(--off-white); }
+.disclaimer { text-align: center; font-size: 0.82rem; color: var(--gray-400); max-width: 760px; margin: 0 auto; line-height: 1.7; }
+
+.footer { background: var(--off-white); border-top: 1px solid var(--gray-100); padding: 40px 0; }
+.footer-inner { text-align: center; }
+.footer-brand { margin-bottom: 16px; }
+.footer-links { margin-bottom: 16px; }
+.footer-links a { color: var(--gray-600); font-size: 0.85rem; transition: var(--transition); }
+.footer-links a:hover { color: var(--navy); }
+.footer-sep { color: var(--gray-400); margin: 0 12px; font-size: 0.8rem; }
+.footer-copy { font-size: 0.78rem; color: var(--gray-400); }
+
+.modal { display: none; position: fixed; inset: 0; z-index: 200; background: rgba(11,29,58,0.5); align-items: center; justify-content: center; padding: 24px; }
+.modal.open { display: flex; }
+.modal .box { background: var(--white); border-radius: 16px; width: 100%; max-width: 620px; max-height: 85vh; overflow: hidden; display: flex; flex-direction: column; }
+.modal .bar { display: flex; align-items: center; justify-content: space-between; padding: 16px 20px; border-bottom: 1px solid var(--gray-100); font-weight: 600; color: var(--navy); }
+.modal .close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--gray-400); line-height: 1; }
+.modal iframe { border: none; width: 100%; height: 520px; }
+
+@media (max-width: 900px) {
+    .hero h1 { font-size: 2.1rem; }
+    .g3, .g2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 640px) {
+    .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0; background: var(--white); flex-direction: column; padding: 24px; gap: 16px; border-bottom: 1px solid var(--gray-100); box-shadow: 0 8px 24px rgba(11,29,58,0.08); }
+    .nav-links.open { display: flex; } .nav-toggle { display: block; }
+    .hero { padding: 110px 24px 60px; }
+    .study-filter select { min-width: 140px; flex: 1; }
+}
+</style>
 </head>
 <body>
 
-<header class="top">
-  <div class="wrap">
-    <a class="brand" href="index.html"><img src="assets/logo.svg" alt=""><span>NeoSci<small>Site Network</small></span></a>
-    <button class="menu-btn" aria-label="Menu">&#9776;</button>
-    <nav class="main">
-      <a href="#studies">Studies</a>
-      <a href="#how">How It Works</a>
-      <a href="#faq">Questions</a>
-      <a href="index.html">For Physicians</a>
-      <a class="cta" href="#studies">Check If I Qualify</a>
-    </nav>
-  </div>
-</header>
+<nav class="nav" id="nav">
+    <div class="nav-inner">
+        <a href="index.html" class="nav-logo">
+            <div class="nav-logo-text">
+                <div class="logo-name"><span class="logo-neo">Neo</span><span class="logo-sci">Sci</span></div>
+                <span class="logo-sub">Site Network</span>
+            </div>
+        </a>
+        <button class="nav-toggle" id="navToggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#studies">Studies</a></li>
+            <li><a href="#how">How It Works</a></li>
+            <li><a href="#faq">Questions</a></li>
+            <li><a href="index.html">For Physicians</a></li>
+            <li><a href="#studies" class="nav-cta">Check If I Qualify</a></li>
+        </ul>
+    </div>
+</nav>
 
 <section class="hero">
-  <div class="wrap">
     <div class="eyebrow">Find a study</div>
     <h1>Clinical studies at practices near you.</h1>
     <p class="lead">Study care and study medication at no cost. Most studies pay for your time. Check online if you qualify.</p>
-    <div class="actions">
-      <a class="btn btn-primary" href="#studies">See Open Studies</a>
-      <a class="btn btn-ghost" href="#how">How It Works</a>
+    <div class="hero-actions">
+        <a class="btn btn-primary" href="#studies">See Open Studies</a>
+        <a class="btn btn-ghost" href="#how">How It Works</a>
     </div>
-  </div>
 </section>
 
 <section class="how3" id="how">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">How it works</div>
-      <h2>Three steps to find out if a study is right for you</h2>
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">How it works</p>
+            <h2>Three steps to find out if a study is right for you</h2>
+        </div>
+        <div class="grid g3">
+            <div class="card"><div class="n">1</div><h3>Answer a short questionnaire</h3><p>Pick a study below and click <b>Check if I qualify</b>. Answer questions about your health and treatment history. Your answers stay private.</p></div>
+            <div class="card"><div class="n">2</div><h3>Talk with a screener</h3><p>Click <b>Schedule a call with a screener</b> and pick a time. The screener reviews your answers and explains the study.</p></div>
+            <div class="card"><div class="n">3</div><h3>Visit the practice</h3><p>If you look like a match, you schedule a screening visit with the study doctor. You decide whether to join.</p></div>
+        </div>
     </div>
-    <div class="grid g3">
-      <div class="card"><div class="n">1</div><h3>Answer a short questionnaire</h3><p>Pick a study below and click <b>Check if I qualify</b>. Answer questions about your health and treatment history. Your answers stay private.</p></div>
-      <div class="card"><div class="n">2</div><h3>Talk with a screener</h3><p>Click <b>Schedule a call with a screener</b> and pick a time. The screener reviews your answers and explains the study.</p></div>
-      <div class="card"><div class="n">3</div><h3>Visit the practice</h3><p>If you look like a match, you schedule a screening visit with the study doctor. You decide whether to join.</p></div>
-    </div>
-  </div>
 </section>
 
 <section class="alt" id="studies">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Open studies</div>
-      <h2>Choose your location and condition</h2>
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Open studies</p>
+            <h2>Choose your location and condition</h2>
+        </div>
+        <div class="study-filter">
+            <select id="f-state" aria-label="Filter by state"><option value="">All locations</option></select>
+            <select id="f-cond" aria-label="Filter by condition"><option value="">All conditions</option></select>
+        </div>
+        <div class="grid g2" id="site-list"></div>
+        <p class="sample-note">Sample listings shown below &mdash; replace STUDIES in the script with your real open studies and locations.</p>
     </div>
-    <div class="study-filter">
-      <select id="f-state" aria-label="Filter by state"><option value="">All locations</option></select>
-      <select id="f-cond" aria-label="Filter by condition"><option value="">All conditions</option></select>
-    </div>
-    <div class="grid g2" id="site-list"></div>
-  </div>
 </section>
 
 <section id="faq">
-  <div class="wrap">
-    <div class="sec-head">
-      <div class="eyebrow">Questions</div>
-      <h2>What people ask before joining a study</h2>
+    <div class="container">
+        <div class="section-header">
+            <p class="section-label">Questions</p>
+            <h2>What people ask before joining a study</h2>
+        </div>
+        <details><summary>What is a clinical study?</summary><p>A clinical study tests whether a new treatment is safe and works. Studies follow a plan approved by an ethics board, and a licensed physician oversees your care.</p></details>
+        <details><summary>Does it cost anything?</summary><p>No. Study visits, tests, and study medication come at no cost. Most studies also pay you for your time and travel.</p></details>
+        <details><summary>Do I need insurance?</summary><p>No. Insurance is not required for most studies.</p></details>
+        <details><summary>Can I quit after I join?</summary><p>Yes. You can leave a study at any time, for any reason.</p></details>
+        <details><summary>Is my information private?</summary><p>Yes. The study team uses your answers only to check eligibility and contact you about the study.</p></details>
+        <details><summary>Will I get the real medication?</summary><p>Many studies compare a new treatment to a placebo or a current treatment. The screener explains how your study works before you decide.</p></details>
     </div>
-    <details><summary>What is a clinical study?</summary><p>A clinical study tests whether a new treatment is safe and works. Studies follow a plan approved by an ethics board, and a licensed physician oversees your care.</p></details>
-    <details><summary>Does it cost anything?</summary><p>No. Study visits, tests, and study medication come at no cost. Most studies also pay you for your time and travel.</p></details>
-    <details><summary>Do I need insurance?</summary><p>No. Insurance is not required for most studies.</p></details>
-    <details><summary>Can I quit after I join?</summary><p>Yes. You can leave a study at any time, for any reason.</p></details>
-    <details><summary>Is my information private?</summary><p>Yes. The study team uses your answers only to check eligibility and contact you about the study.</p></details>
-    <details><summary>Will I get the real medication?</summary><p>Many studies compare a new treatment to a placebo or a current treatment. The screener explains how your study works before you decide.</p></details>
-  </div>
 </section>
 
-<section class="alt">
-  <div class="wrap">
-    <p class="disclaimer">Joining a clinical study is voluntary. Completing the questionnaire or a screening call does not enroll you in a study or guarantee eligibility. The study doctor makes the final eligibility decision. If you are having a medical emergency, call 911. If you are in crisis, call or text 988.</p>
-  </div>
+<section class="disclaimer-section">
+    <div class="container">
+        <p class="disclaimer">Joining a clinical study is voluntary. Completing the questionnaire or a screening call does not enroll you in a study or guarantee eligibility. The study doctor makes the final eligibility decision. If you are having a medical emergency, call 911. If you are in crisis, call or text 988.</p>
+    </div>
 </section>
 
-<footer>
-  <div class="wrap">
-    <div class="cols">
-      <a class="brand" href="index.html"><img src="assets/logo.svg" alt="" style="width:28px"><span>NeoSci<small>Site Network</small></span></a>
-      <div><a href="#studies">Open Studies</a> &nbsp;|&nbsp; <a href="index.html">For Physicians</a> &nbsp;|&nbsp; <a href="mailto:contact@neosciclinicalresearch.com">contact@neosciclinicalresearch.com</a> &nbsp;|&nbsp; <a href="privacy.html">Privacy</a></div>
+<footer class="footer">
+    <div class="container">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <span class="logo-neo">Neo</span><span class="logo-sci">Sci</span>
+                <span class="logo-sub" style="display:block;margin-top:2px;">Site Network</span>
+            </div>
+            <div class="footer-links"><a href="#studies">Open Studies</a><span class="footer-sep">|</span><a href="index.html">For Physicians</a><span class="footer-sep">|</span><a href="mailto:contact@neosciclinicalresearch.com">contact@neosciclinicalresearch.com</a><span class="footer-sep">|</span><a href="privacy.html">Privacy</a></div>
+            <p class="footer-copy">&copy; <span class="yr">2026</span> NeoSci Clinical Research. NeoSci Site Network is a service of NeoSci Clinical Research. All rights reserved.</p>
+        </div>
     </div>
-    <div class="legal">© <span class="yr">2026</span> NeoSci Clinical Research. NeoSci Site Network is a service of NeoSci Clinical Research. All rights reserved.</div>
-  </div>
 </footer>
 
 <div class="modal" id="book-modal" aria-modal="true" role="dialog">
-  <div class="box">
-    <div class="bar"><span>Schedule a call</span><button class="close" aria-label="Close">&times;</button></div>
-    <iframe title="Booking" src="about:blank"></iframe>
-  </div>
+    <div class="box">
+        <div class="bar"><span>Schedule a call with a screener</span><button class="close" aria-label="Close">&times;</button></div>
+        <!-- TODO: replace with your real scheduling link (e.g. a HubSpot meetings link or Calendly embed) -->
+        <iframe title="Booking" id="book-frame" src="about:blank"></iframe>
+    </div>
 </div>
 
-<script src="assets/config.js"></script>
-<script src="assets/site.js"></script>
+<script>
+document.getElementById('yr') && (document.getElementById('yr').textContent = new Date().getFullYear());
+document.querySelectorAll('.yr').forEach(el => el.textContent = new Date().getFullYear());
+
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+const toggle = document.getElementById('navToggle'), links = document.getElementById('navLinks');
+toggle.addEventListener('click', () => { links.classList.toggle('open'); toggle.classList.toggle('open'); });
+document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', e => { e.preventDefault(); const t = document.querySelector(a.getAttribute('href')); if (t) { t.scrollIntoView({behavior:'smooth', block:'start'}); links.classList.remove('open'); toggle.classList.remove('open'); } }); });
+
+// SAMPLE DATA — replace with your real open studies and locations.
+const STUDIES = [
+    { state: "Utah", condition: "Asthma & Allergy", title: "Adult Asthma Biologic Study", practice: "Park City Family Medicine", desc: "For adults 18+ with moderate-to-severe asthma not fully controlled on current treatment." },
+    { state: "Utah", condition: "Dermatology", title: "Adolescent Eczema Study", practice: "Wasatch Dermatology Partners", desc: "For ages 12+ with moderate-to-severe atopic dermatitis." },
+    { state: "Idaho", condition: "Vaccines", title: "Adult RSV Vaccine Study", practice: "Boise Valley Internal Medicine", desc: "For adults 60+ in general good health." },
+];
+
+const stateSel = document.getElementById('f-state');
+const condSel = document.getElementById('f-cond');
+const list = document.getElementById('site-list');
+
+[...new Set(STUDIES.map(s => s.state))].sort().forEach(s => {
+    const opt = document.createElement('option'); opt.value = s; opt.textContent = s; stateSel.appendChild(opt);
+});
+[...new Set(STUDIES.map(s => s.condition))].sort().forEach(c => {
+    const opt = document.createElement('option'); opt.value = c; opt.textContent = c; condSel.appendChild(opt);
+});
+
+function renderStudies() {
+    const stateVal = stateSel.value, condVal = condSel.value;
+    const filtered = STUDIES.filter(s => (!stateVal || s.state === stateVal) && (!condVal || s.condition === condVal));
+    list.innerHTML = '';
+    if (!filtered.length) {
+        list.innerHTML = '<p class="no-results">No open studies match that filter yet &mdash; check back soon.</p>';
+        return;
+    }
+    filtered.forEach(s => {
+        const card = document.createElement('div');
+        card.className = 'study-card';
+        card.innerHTML = `<p class="meta">${s.state} &middot; ${s.condition}</p><h3>${s.title}</h3><p>${s.desc}<br><span style="color:var(--gray-400)">${s.practice}</span></p><button class="btn btn-primary" type="button">Check If I Qualify</button>`;
+        card.querySelector('button').addEventListener('click', openModal);
+        list.appendChild(card);
+    });
+}
+stateSel.addEventListener('change', renderStudies);
+condSel.addEventListener('change', renderStudies);
+renderStudies();
+
+const modal = document.getElementById('book-modal');
+const frame = document.getElementById('book-frame');
+function openModal() {
+    // TODO: set frame.src to your real scheduling link before going live
+    modal.classList.add('open');
+}
+document.querySelectorAll('.btn-primary[href="#studies"]').forEach(btn => {});
+modal.querySelector('.close').addEventListener('click', () => { modal.classList.remove('open'); frame.src = 'about:blank'; });
+modal.addEventListener('click', e => { if (e.target === modal) { modal.classList.remove('open'); frame.src = 'about:blank'; } });
+</script>
+
 </body>
 </html>
